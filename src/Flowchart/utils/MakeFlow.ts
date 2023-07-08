@@ -29,7 +29,8 @@ export const InitEdges= (nodes : Node[],edgeData:EdgeDataTypeInterface[]):Edge[]
             type :'smoothstep',
             style : {
                 strokeWidth : '2px',
-                stroke : stroke,
+                stroke : stroke,    
+                offset:10                
             },
             sourceHandle : sourceNode?.data.level===targetNode?.data.level ? 'l' : 'r'
         });

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import ReactFlow, {
   Background,
   useNodesState,
@@ -8,6 +8,7 @@ import ReactFlow, {
   Node,
   BackgroundVariant,
   ConnectionLineType,
+  useViewport,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import CustomNode from './Components/Nodes/CustomNode';
@@ -54,7 +55,7 @@ export default function App() {
   );
   const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>(layoutedNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>(layoutedEdges);
-  
+
   const onConnect = useCallback(
     (params:any) =>
       setEdges((eds) =>
@@ -72,9 +73,9 @@ export default function App() {
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         connectionLineType={ConnectionLineType.SmoothStep}
-        
         nodeTypes={nodeTypes}
-        style={rfStyle}>
+        style={rfStyle}
+        fitView>
         <Background color='#3e4887c0' variant={BackgroundVariant.Dots} gap={18} size={2} />
       </ReactFlow>
     </div>
