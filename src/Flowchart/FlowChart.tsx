@@ -20,6 +20,8 @@ import { InitEdges, InitNodes } from './utils/MakeFlow';
 import { TopicData } from './data/topicData';
 import { edgeData } from './data/edgeData';
 import TopicPannelItem from './Components/Pannel/TopicPannelItem';
+import { LevelColor } from './utils/LevelColor';
+import BPannelItem from './Components/Pannel/BPannelItem';
 
 const rfStyle = {
   backgroundColor: "#1A1E36"
@@ -35,8 +37,14 @@ const firstNode:Node = {
     },
     type: 'topicNode'
 } 
-const nodeTypes = { activeNode: CustomNode,extendNode:ActiveExtend,topicNode : TopicNode,topicPanel : TopicPannelItem};
+const nodeTypes = { activeNode: CustomNode,
+  extendNode:ActiveExtend,
+  topicNode : TopicNode,
+  topicPanel : TopicPannelItem,
+  bPannelItem : BPannelItem,
+};
 export default function App() {
+  LevelColor(nodeData);
   const initialNodes = InitNodes(nodeData);
   initialNodes.unshift(firstNode);
   const initialEdges = InitEdges(initialNodes, edgeData);
@@ -56,7 +64,7 @@ export default function App() {
   );
   
   return (
-    <div style={{ width: '100vw', height: '100vh' }}>
+    <div style={{ width: '100vw', height: '100vh'}}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -64,7 +72,7 @@ export default function App() {
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         connectionLineType={ConnectionLineType.SmoothStep}
-        fitView
+        
         nodeTypes={nodeTypes}
         style={rfStyle}>
         <Background color='#3e4887c0' variant={BackgroundVariant.Dots} gap={18} size={2} />

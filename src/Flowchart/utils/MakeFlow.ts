@@ -10,7 +10,7 @@ export const InitNodes= (data : NodeDataTypeInterface[]):Node[]=>{
             position,
             data: {
                 ...val, extend: val.type === "extend" ? true : false, handleColor: val.iconColor === 'alert' ? '#ED6011' : val.iconColor === 'danger' ? '#FB1A43':''},
-            type: val.type === 'extendNode' ? 'extendNode': val.type === 'topicPanel' ?'topicPanel' : 'activeNode',
+            type:val.type && val.type !=='extend'?val.type:'activeNode',
         });
     })
     return nodes;

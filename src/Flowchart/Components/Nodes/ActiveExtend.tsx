@@ -13,7 +13,8 @@ export interface ActiveExtendProp{
         subLabel?:string,
         iconColor: 'danger' | 'success' | 'alert',
         Icon : IconType,
-        DataIcon: any
+        DataIcon: any,
+        backgroundColor?: string
       }
     isConnectable : boolean
   }
@@ -24,13 +25,12 @@ function ActiveExtend({data,isConnectable}:ActiveExtendProp) {
     height:'8px',
     width: '8px',
     left: '-4px',
-
   }
 
   const [iconColor, IconRen] = NodeIcon(data.iconColor ? data.iconColor : '');
   const Icon = data.DataIcon;
   return (
-    <div className="flex flex-col justify-between items-center w-[140px] h-[195px] bg-[#2D3356] rounded-2xl relative">
+    <div className="flex flex-col justify-between items-center w-[140px] h-[195px]  rounded-2xl relative" style={{background : data.backgroundColor ? data.backgroundColor : '#2D3356'}}>
       <div className='bg-[#626999] relative w-[140px] h-[100px] rounded-2xl py-3 flex flex-col align-middle justify-center items-center text-[10px] space-y-1 text-white'>
         <div className="w-[14px] h-[14px] flex align-middle items-center justify-center absolute right-[-6px] rounded-full" style={{ backgroundColor: data.iconColor ? iconColor : '' }}>
           {data.iconColor && <IconRen style={{ fontSize: '13px', color: '#2D3356  ' }} />}

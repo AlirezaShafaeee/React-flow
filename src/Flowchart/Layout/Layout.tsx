@@ -5,9 +5,11 @@ dagreGraph.setDefaultEdgeLabel(() => ({}));
 const customNodeHeight = 55;
 const extendNodeHeight = 90;
 const xOffset = 170;
-const yOffset = -10;
-const topPanelOffset = -100
+const yOffset = 0;
+const topPanelOffset = -40;
 const topicNodeWidth = 400;
+const bPanelOffset = 40;
+const bPanelyOffset = 800;
 const findNodeByLevel= (level : number,nodes:Node[]):Node=>{
   return nodes.find((node :Node)=>node.data.level === level && node.data.active) || {id:'',position:{x:0,y:0},data:{label:''}}
 }
@@ -25,9 +27,8 @@ const getLayoutedElements = (nodes:Node[], edges:Edge[], direction = 'LR') => {
     nodes.forEach((val:Node)=>
     {
       
-      if((tem.data.level +1 ===val.data.level && tem.data.active && val.data.active) || (tem.data.level >=10 && tem.data.level + 1 ===val.data.level))
+      if((tem.data.level +1 ===val.data.level && tem.data.active && val.data.active) || (tem.data.level<=18&& tem.data.level >=10 && tem.data.level + 1 ===val.data.level))
       {
-        console.log(tem.data.level)
         dagreGraph.setEdge(tem.id,val.id);
       }
     })
@@ -38,12 +39,16 @@ const getLayoutedElements = (nodes:Node[], edges:Edge[], direction = 'LR') => {
   
   nodes.forEach((node:Node) => {  
     const nodeWithPosition = dagreGraph.node(node.id);
-    const upperNode:Node = findNodeByLabel(`${node.data.label[0]}-${node.data.label[2] - 1}`, nodes)
+    const upperNode:Node = findNodeByLabel(`${node.data.label[0]}${node.data.level >=19 ?'p':'-'}${node.data.label[2] - 1}`, nodes)
+    if(node.data.level===21)
+    {
+      console.log(upperNode)
+    }
     node.targetPosition= Position.Left;
     node.targetPosition = Position.Right;
     node.position = {
-      x: node.data.active||node.data.level>=10? nodeWithPosition.x - xOffset : findNodeByLevel(node.data.level, nodes)?.position.x,
-      y: node.data.level >= 10 ? topPanelOffset :  node.data.active ? nodeWithPosition.y + customNodeHeight : upperNode?.position.y + (node.data.type === "extend" && upperNode.data.type === 'extend' ? extendNodeHeight : customNodeHeight),
+      x: node.data.active||(node.data.type ==='topicPanel')? nodeWithPosition.x - xOffset : findNodeByLevel(node.data.level, nodes)?.position.x,
+      y: node.data.type ==='topicPanel'? topPanelOffset :node.data.type ==='bPannelItem' && node.data.active? bPanelyOffset:  node.data.active ? nodeWithPosition.y + customNodeHeight : upperNode?.position.y + (node.data.type === "extend" && upperNode.data.type === 'extend' ? extendNodeHeight:node.data.type==="bPannelItem" ?bPanelOffset : customNodeHeight),
     };
     return node;
   });

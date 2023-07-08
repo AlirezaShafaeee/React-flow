@@ -1,11 +1,11 @@
 import { IconType } from "react-icons";
-import { BsCheck, BsExclamationLg, BsFillPauseFill } from "react-icons/bs";
+import { BsCheck, BsDash, BsExclamation } from "react-icons/bs";
 
 export const NodeIcon = (iconColor: string): [string, IconType] => {
     if (iconColor === 'danger')
-        return ['#FB1A43', BsExclamationLg];
+        return ['#FB1A43', BsDash];
     else if (iconColor === 'success')
         return ['#00A053', BsCheck];
     else
-        return ['#ED6011', BsFillPauseFill]
+        return ['#ED6011', BsExclamation]
 }

@@ -8,12 +8,12 @@ function CustomNode({data,isConnectable}:CustomNodeProps) {
     border:'none',
     height :data.active ? '8px': '5px',
     width: data.active  ? '8px' : '6px',
-    left:data.active ? '-4px':'-3px'
+    left:data.active ? '-4px':'-3px',
   }
   const [iconColor , IconRen] = NodeIcon(data.iconColor?data.iconColor : '');
   return (
-    <div className="space-y-[1px] text-[10px] rounded-[15px] items-center justify-center flex flex-col py-[6px] w-[140px]" style={{ backgroundColor: data.active ?'#626999' : '#2D3356'}}>
-       <div className="w-[13px] h-[12px] flex align-middle items-center justify-center absolute right-[-6px] rounded-full" style={{backgroundColor: data.iconColor ?iconColor:''}}>
+    <div className="space-y-[1px] text-[10px] rounded-[15px] items-center justify-center flex flex-col py-[6px] w-[140px]" style={{ backgroundColor:data.backgroundColor ?  data.backgroundColor: data.active ?'#626999' : '#2D3356'}}>
+       <div className="w-[12px] h-[12px] flex align-middle items-center justify-center absolute right-[-6px] rounded-full" style={{backgroundColor: data.iconColor ?iconColor:''}}>
         {data.iconColor &&<IconRen style={{fontSize:'13px'}}/>}
        </div>
        <Handle

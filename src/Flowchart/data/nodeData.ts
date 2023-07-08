@@ -31,7 +31,7 @@ export const nodeData:NodeDataTypeInterface[] = [
         iconColor : 'success',
         level : 2,
         type : 'extend',
-        SubNumber: 5
+        subNumber: 5
     },
     {
         label: '2-3',
@@ -41,7 +41,7 @@ export const nodeData:NodeDataTypeInterface[] = [
         iconColor : 'success',
         level : 2,
         type: 'extend',
-        SubNumber: 5
+        subNumber: 5
     }
     ,{
         label: '2-4',
@@ -51,7 +51,7 @@ export const nodeData:NodeDataTypeInterface[] = [
         iconColor : 'success',
         level : 2,
         type: 'extend',
-        SubNumber: 5
+        subNumber: 5
     }
     ,{
         label: '2-5',
@@ -314,5 +314,89 @@ export const nodeData:NodeDataTypeInterface[] = [
         active: false,
         level: 17,
         type: 'topicPanel',
+    },
+    {
+        label: 'empBtnPln',
+        perName: '',
+        enName: '',
+        active: true,
+        level: 19,
+        type: 'bPannelItem',
+    },
+    {
+        label: 'buttomPanne',
+        perName: 'قطعی سرویس مرکز جمع آوری داده',
+        enName: '',
+        active: true,
+        level: 20,
+        type: 'bPannelItem',
+    },
+    {
+        label: '2p1',
+        perName: 'اختلال در سرویس تحلیل پیشرفته',
+        enName: '',
+        active: true,
+        level: 21,
+        type: 'bPannelItem',
+        iconColor: 'alert'
+    },
+    {
+        label: '2p2',
+        perName: 'قطعی سرویس تحلیل پیشرفته',
+        enName: '',
+        active: false,
+        level: 21,
+        type: 'bPannelItem',
+    },
+    {
+        label: '3p1',
+        perName: 'اختلال در سرویس شناسایی مشابهت',
+        enName: '',
+        active: true,
+        level: 22,
+        type: 'bPannelItem',
+        iconColor: 'alert'
+    },
+    {
+        label: '3p2',
+        perName: 'قطعی سرویس موقعیت جغرافیایی',
+        enName: '',
+        active: false,
+        level: 22,
+        type: 'bPannelItem',
+    },
+    {
+        label: 'buttomPanne',
+        perName: 'اختلال در سرویس استخراج اطلاعات',
+        enName: '',
+        active: true,
+        level: 23,
+        type: 'bPannelItem',
+    },
+    {
+        label: 'buttomPanne',
+        perName: 'قطعی سرویس تحلیل گراف',
+        enName: '',
+        active: true,
+        level: 24,
+        type: 'bPannelItem',
+    },
+    {
+        label: 'buttomPanne',
+        perName: 'قطعی سرویس واسط پیام',
+        enName: '',
+        active: true,
+        level: 25,
+        type: 'bPannelItem',
+    },
+    {
+        label: 'buttomPanne',
+        perName: 'اختلال در سرویس انبار داده',
+        enName: '',
+        active: true,
+        level: 26,
+        type: 'bPannelItem',
+        iconColor: 'alert'
     }
+
 ]

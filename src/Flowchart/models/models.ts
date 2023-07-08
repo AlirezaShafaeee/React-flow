@@ -5,13 +5,14 @@ export interface NodeDataTypeInterface {
     active : boolean,
     handleColor?:string,
     iconColor?: 'danger' | 'success' | 'alert',
-    type?: 'extend' | 'extendNode' |'topicPanel',    
+    type?: 'extend' | 'extendNode' |'topicPanel' |'bPannelItem',    
     level : number,
     extend ? :boolean,
-    SubNumber? :number,
+    subNumber? :number,
     minData?: number, 
     accData?: number,
-    DataIcon?: any
+    DataIcon?: any,
+    backgroundColor?: string
 }
 export interface EdgeDataTypeInterface {
     source : string,
@@ -32,7 +33,8 @@ export interface CustomNodeProps {
         handleColor: string,
         extend?: boolean,
         SubNumber?: number,
-        iconColor: 'danger' | 'success' | 'alert'
+        iconColor: 'danger' | 'success' | 'alert',
+        backgroundColor: string
     }
     isConnectable: boolean
 }
