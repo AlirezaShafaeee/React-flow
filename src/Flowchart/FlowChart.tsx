@@ -1,40 +1,52 @@
 import React, { useCallback } from 'react';
 import ReactFlow, {
-  MiniMap,
-  Controls,
   Background,
   useNodesState,
   useEdgesState,
   addEdge,
   Edge,
   Node,
-  OnConnect,
   BackgroundVariant,
   ConnectionLineType,
 } from 'reactflow';
-
 import 'reactflow/dist/style.css';
-import CustomNode from './Components/CustomNode';
+import CustomNode from './Components/Nodes/CustomNode';
 import getLayoutedElements from './Layout/Layout';
-import { initialEdges, initialNodes } from './texnode-ed';
-import { InitNodes } from './utils/MakeFlow';
+
 import { nodeData } from './data/nodeData';
-import ActiveExtend from './Components/ActiveExtend';
+import ActiveExtend from './Components/Nodes/ActiveExtend';
+import TopicNode from './Components/Nodes/TopicNode';
+import { InitEdges, InitNodes } from './utils/MakeFlow';
+import { TopicData } from './data/topicData';
+import { edgeData } from './data/edgeData';
+import TopicPannelItem from './Components/Pannel/TopicPannelItem';
 
 const rfStyle = {
   backgroundColor: "#1A1E36"
 };
-
-const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
-  initialNodes,
-  initialEdges
-);
-const nodeTypes = { activeNode: CustomNode,extendNode:ActiveExtend};
+const firstNode:Node = {
+    id:"0",
+    position : {x : 0, y : 0},
+    data:  {
+      label : '0',
+      list: TopicData,
+      level : 0, 
+      active : true
+    },
+    type: 'topicNode'
+} 
+const nodeTypes = { activeNode: CustomNode,extendNode:ActiveExtend,topicNode : TopicNode,topicPanel : TopicPannelItem};
 export default function App() {
-  console.log(InitNodes(nodeData));
-  const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>(InitNodes(nodeData));
+  const initialNodes = InitNodes(nodeData);
+  initialNodes.unshift(firstNode);
+  const initialEdges = InitEdges(initialNodes, edgeData);
+  const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
+    initialNodes,
+    initialEdges
+  );
+  const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>(layoutedNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>(layoutedEdges);
-
+  
   const onConnect = useCallback(
     (params:any) =>
       setEdges((eds) =>
@@ -42,7 +54,7 @@ export default function App() {
       ),
     []
   );
-
+  
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
       <ReactFlow
@@ -55,7 +67,7 @@ export default function App() {
         fitView
         nodeTypes={nodeTypes}
         style={rfStyle}>
-        <Background color='#3e4887c0'  variant={BackgroundVariant.Dots} gap={18} size={2} />
+        <Background color='#3e4887c0' variant={BackgroundVariant.Dots} gap={18} size={2} />
       </ReactFlow>
     </div>
   );

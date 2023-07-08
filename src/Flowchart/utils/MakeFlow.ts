@@ -1,16 +1,17 @@
 import { Edge, Node } from "reactflow"
 
-import {EdgeDataTypeInterface, NodeDataTypeInterface} from '../models/models'
+import {EdgeDataTypeInterface, NodeDataTypeInterface} from '../models/models';
 const position = { x: 0, y: 0 };
 export const InitNodes= (data : NodeDataTypeInterface[]):Node[]=>{
     const nodes:Node[] = [];
-    data.map((val,ind)=>{
+    data.map((val,ind):void=>{
         nodes.push({
-            id : ind.toString(),
+            id : (ind + 1).toString(),
             position,
-            data: {...  val},
-            type:'extendNode'
-        })
+            data: {
+                ...val, extend: val.type === "extend" ? true : false, handleColor: val.iconColor === 'alert' ? '#ED6011' : val.iconColor === 'danger' ? '#FB1A43':''},
+            type: val.type === 'extendNode' ? 'extendNode': val.type === 'topicPanel' ?'topicPanel' : 'activeNode',
+        });
     })
     return nodes;
 }

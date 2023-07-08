@@ -1,4 +1,3 @@
-import { CustomNodeProps } from "./Components/CustomNode";
 import { Edge, Node } from "reactflow";
 const position = { x: 0, y: 0 };
 const edgeType = 'smoothstep';

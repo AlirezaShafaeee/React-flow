@@ -13,3 +13,27 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+.CustomScrol::-webkit-scrollbar {
+  width: 3px;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+}
+
+.CustomScrol::-webkit-scrollbar-track {
+  background: #1F233F;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+}
+
+.CustomScrol::-webkit-scrollbar-thumb {
+  background: #626999;
+  border-radius: 15px;
+}
+
+
+.CustomScrol::-webkit-scrollbar-thumb:hover {
+  background: #626999ba;
+}
