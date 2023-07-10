@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  direction: rtl  ;
 }
 
 
@@ -36,4 +37,11 @@
 
 .CustomScrol::-webkit-scrollbar-thumb:hover {
   background: #626999ba;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+{
+  -webkit-appearance: none;
+  margin: 0;
 }
