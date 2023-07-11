@@ -8,45 +8,9 @@ import persian from "react-date-object/calendars/persian"
 import persian_fa from "react-date-object/locales/persian_fa"
 import "react-multi-date-picker/styles/backgrounds/bg-dark.css"
 import TimeSelect from './TimeSelect'
-const timeItems = [
-    {
-        label : 'یک ساعت',
-    },
-    {
-        label: '6 ساعت',
-    },
-    {
-        label: 'ساعت 12',
-    },
-    {
-        label: 'ساعت 24',
-    },
-    {
-        label: 'امروز',
-    },
-    {
-        label: 'دیروز',
-    },
-    {
-        label: 'یک هفته',
-    },
-    {
-        label: 'دو هفته',
-    },
-    {
-        label: 'یک ماهه',
-    },
-    {
-        label: 'دو ماهه',
-    },
-    {
-        label: 'سه ماهه',
-    },
-]
+import { options, timeItems } from './data/TimeSettingData'
 
-const options = ['ثانیه' , 'دقیقه','ساعت'];
 function TimePicker() {
-
   const date = new DateObject(new Date()).convert(persian, persian_fa);
   const [activeItem , setActiveItem] = useState(0);
   const [refreshTime,setRefreshTime] = useState(0);
@@ -66,9 +30,20 @@ function TimePicker() {
                       <DatePicker
                           value={date}
                           calendar={persian}
-                          className="bg-dark"
+                          className="custom-calendar bg-dark"
                           locale={persian_fa}
                           calendarPosition="top-right"
+                          mapDays={({ date, isSameDate, selectedDate }) => {
+                              if (!(selectedDate instanceof Array)) {
+                                  return {
+
+                                      style: {
+                                          color: isSameDate(date, selectedDate) ? '#1E223D' : "white",
+                                          background: isSameDate(date, selectedDate) ? '#626999' : ''
+                                      }
+                                  }
+                              }
+                          }}
                           render={(value:any, openCalendar:any) => {
                               return (
                                   <button className='outline-none border-none h-3' onClick={openCalendar}>
@@ -88,6 +63,18 @@ function TimePicker() {
                           className="bg-dark"
                           locale={persian_fa}
                           calendarPosition="top-right"
+                          mapDays={({date, isSameDate,selectedDate}) => {
+                              if(!(selectedDate instanceof Array))
+                              {
+                              return {
+
+                                  style: {
+                                    color: isSameDate(date, selectedDate)?'#1E223D': "white",  
+                                    background: isSameDate(date, selectedDate) ? '#626999': ''
+                                  }
+                              }
+                            }
+                          }}
                           render={(value:any, openCalendar:any) => {
                               return (
                                   <button className='outline-none border-none h-3' onClick={openCalendar}>
@@ -109,7 +96,7 @@ function TimePicker() {
                     </div>
                     <input type="number" value={refreshTime} className='appearance-none bg-transparent w-10/12 text-[12px] text-center text-white border-none outline-none ' />
                 </div>
-                <div className="w-24 h-7 cursor-pointer bg-[#222746] rounded-[100px] flex px-2 items-center relative" onClick={()=>setOpen(true)}>
+                <div className={["w-24 h-7 cursor-pointer bg-[#222746] flex px-2 items-center relative",open?'rounded-t-2xl':'rounded-full'].join(" ")} onClick={()=>setOpen(true)}>
                 <div className='text-[#616999] absolute left-2 top-2'><IoIosArrowDown/></div>
                 <div className="text-right text-white text-xs font-bold">{options[timeType]}</div>
                     <TimeSelect setOpen={setOpen} open={open} active={timeType} options={options} changeType={setTimeType}/>

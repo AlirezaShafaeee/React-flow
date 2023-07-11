@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 export default function useOutsideAlerter(ref:any,setOpen : (val:boolean)=>void) {
     useEffect(() => {
       function handleClickOutside(event:any) {
