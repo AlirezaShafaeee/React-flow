@@ -1,14 +1,15 @@
 import React from 'react';
 import './App.css';
-import FlowChart from './Flowchart/FlowChart';
+import FlowChart from './Pages/Flowchart/FlowChart';
 import { ReactFlowProvider } from 'reactflow';
-import TimePicker from './TimePicker/TimePicker';
-import TimeSelect from './TimePicker/TimeSelect';
+import TimePicker from './Pages/TimePicker/TimePicker';
+import TimeSelect from './Pages/TimePicker/TimeSelect';
+import PayamItem from './Pages/Payesh/Components/Payam/PayamItem';
 
 function App() {
   return (
-    <div className="App py-3">
-      <TimePicker/>
+    <div className="App bg-slate-300 py-3 px-4 w-[1620px]">
+      <PayamItem/>
     </div>
   );
 }
