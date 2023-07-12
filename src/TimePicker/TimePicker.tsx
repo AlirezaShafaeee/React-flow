@@ -9,9 +9,10 @@ import persian_fa from "react-date-object/locales/persian_fa"
 import "react-multi-date-picker/styles/backgrounds/bg-dark.css"
 import TimeSelect from './TimeSelect'
 import { options, timeItems } from './data/TimeSettingData'
-
+import type{Value} from "react-multi-date-picker"
+const seperator = ','
 function TimePicker() {
-  const date = new DateObject(new Date()).convert(persian, persian_fa);
+  const [date , setDate] =useState<Value>(new DateObject(new Date()).convert(persian, persian_fa));
   const [activeItem , setActiveItem] = useState(0);
   const [refreshTime,setRefreshTime] = useState(0);
   const [timeType , setTimeType] = useState(0);
@@ -30,8 +31,11 @@ function TimePicker() {
                       <DatePicker
                           value={date}
                           calendar={persian}
+                          onChange={setDate}
                           className="custom-calendar bg-dark"
                           locale={persian_fa}
+                          range
+                          dateSeparator={seperator}
                           calendarPosition="top-right"
                           mapDays={({ date, isSameDate, selectedDate }) => {
                               if (!(selectedDate instanceof Array)) {
@@ -44,12 +48,13 @@ function TimePicker() {
                                   }
                               }
                           }}
-                          render={(value:any, openCalendar:any) => {
-                              return (
-                                  <button className='outline-none border-none h-3' onClick={openCalendar}>
-                                      {value}
-                                  </button>
-                              )
+                          render={(value:string, openCalendar:any) => {
+                            const values =  value.split(seperator);
+                            return (
+                                <button className='outline-none border-none h-3' onClick={openCalendar}>
+                                    {values[0]}
+                                </button>
+                            )
                           }}
                       />
                   </div>
@@ -60,9 +65,12 @@ function TimePicker() {
                       <DatePicker
                           value={date}
                           calendar={persian}
-                          className="bg-dark"
+                          onChange={setDate}
+                          className="custom-calendar bg-dark"
                           locale={persian_fa}
+                          range
                           calendarPosition="top-right"
+                          dateSeparator={seperator}
                           mapDays={({date, isSameDate,selectedDate}) => {
                               if(!(selectedDate instanceof Array))
                               {
@@ -75,12 +83,14 @@ function TimePicker() {
                               }
                             }
                           }}
-                          render={(value:any, openCalendar:any) => {
-                              return (
-                                  <button className='outline-none border-none h-3' onClick={openCalendar}>
-                                      {value} 
-                                  </button>
-                              )
+                          render={(value:string, openCalendar:any) => {
+                            const values =  value.split(seperator);
+                            console.log(values)
+                            return (
+                                <button className='outline-none border-none h-3' onClick={openCalendar}>
+                                    {values[1]?values[1] : values[0]} 
+                                </button>
+                            )
                           }}
                       />
                   </div>
