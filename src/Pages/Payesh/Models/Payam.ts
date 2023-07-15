@@ -16,7 +16,7 @@ export interface Payam{
     feel?:boolean,
     emotions ?:string[],
     behaviour?:string[],
-    contentAnalysis ?:boolean,
+    content ?:boolean,
     reference ?:boolean,
     madeDate?:Date,
     

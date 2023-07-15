@@ -8,7 +8,7 @@ import PayamItem from './Pages/Payesh/Components/Payam/PayamItem';
 
 function App() {
   return (
-    <div className="App bg-slate-300 py-3 px-4 w-[1620px]">
+    <div className="App bg-slate-300 py-3 px-10 w-[90%] flex justify-center items-center m-auto">
       <PayamItem/>
     </div>
   );
