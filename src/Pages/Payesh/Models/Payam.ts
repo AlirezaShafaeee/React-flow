@@ -1,4 +1,4 @@
-export interface Payam{
+export interface PayamProps{
     topic : string ,
     avatart : string,
     body : string,
@@ -6,7 +6,7 @@ export interface Payam{
     forwards? : number,
     comments? : number,
     social : string,
-    type? : 'channel'|'group'
+    type? : 'کانال'|'گروه'
     channelId : string,
     date?: Date,
     pictures?: string[],
@@ -16,8 +16,8 @@ export interface Payam{
     feel?:boolean,
     emotions ?:string[],
     behaviour?:string[],
-    content ?:boolean,
+    content ?:string[],
     reference ?:boolean,
     madeDate?:Date,
-    
+    bolton?:boolean
 }

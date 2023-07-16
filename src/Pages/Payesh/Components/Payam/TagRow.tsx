@@ -9,7 +9,7 @@ interface tagRowProps{
 }
 const TagRow :React.FC<tagRowProps> = ({labels,backgroundColor,tagBackground,color}) => {
   return (
-    <div className={'px-1 h-[24px] rounded-[20px] [&>div]:mr-1 [&>*:first-child]:mr-0 flex items-center'} style={{background:backgroundColor}}>
+    <div className={'px-1 h-[24px] max-lg:py-1 max-lg:h-fit max-lg:w-fit items-center flex-wrap rounded-3xl [&>div]:mr-1 [&>*:first-child]:mr-0 flex'} style={{background:backgroundColor}}>
       {labels.map((value:string, index:number)=>{
         return <TagItem label={value} key={index} color={color instanceof Array  ? color[index] : color} backgroundColor={tagBackground instanceof Array ? tagBackground[index]:tagBackground}/>
       })}
