@@ -1,14 +1,11 @@
 import { Grid } from '@mui/material';
 import React, { useState } from 'react'
-import {BsHeart} from 'react-icons/bs';
-import {PiShareFat} from 'react-icons/pi'
-import {TbMessageCircle2} from 'react-icons/tb'
 import {ReactComponent as TelegramIcon} from '../../Assets/Telegram.svg'
-import {ReactComponent as Scan} from '../../Assets/Scan.svg'
-import {ReactComponent as Eye} from '../../Assets/Eye.svg'
-import {ReactComponent as Bolton} from '../../Assets/bolton.svg'
-import TagRow from './TagRow';
+import TagRow from '../UI/TagRow';
 import { PayamProps } from '../../Models/Payam';
+import SubscriptionInfo from '../Post/SubscriptionInfo';
+import SocialInfo from '../Post/SocialInfo';
+import Toolbar from '../Post/Toolbar';
 const keywordsColor = ['#00796B', '#0288D1', '#303F9F', '#512DA8', '#C2185B', '#D32F2F'];
 const keywordsBackgrounds = ['#B2DFDB', '#B3E5FC', '#C5CAE9', '#D1C4E9', '#F8BBD0', '#FFCDD2'];
 const PayamItem: React.FC<PayamProps> = (props) => {
@@ -21,18 +18,8 @@ const PayamItem: React.FC<PayamProps> = (props) => {
           <div className='rounded-full w-[43px] h-[43px] bg-slate-400'></div>
           <div className="text-right text-zinc-800 text-[12px] font-bold">{props.topic}</div>
         </div>
-       {props.likes && <div className='flex items-center justify-around text-xs font-bold  text-[#737373]'>
-          <div className='flex items-center'><span>{props.likes}</span><BsHeart/></div>
-          <div className='flex items-center'><span>{props.forwards}</span><PiShareFat/></div>
-          <div className='flex items-center'><span>{props.comments}</span><TbMessageCircle2/></div>
-        </div>}
-        <div className='flex [&>div]:flex [&>div]:items-center justify-around bg-[#F2F5FA] rounded-full h-[24px] text-[#9797A0] text-[12px] font-medium '>
-          <div>{props.type}</div>
-          <div>
-            <span className='ml-1'>{props.social}</span>
-            <TelegramIcon/>
-          </div>
-        </div>
+       {props.likes && <SubscriptionInfo likes={props.likes} forwards={props?.forwards} comments={props?.comments}/>}
+        <SocialInfo type={props.type} social={props.social}/>
       </Grid>
       {props.pictures &&<Grid container className='min-xl:self-stretch' item lg={3} xl={1.4} md={3}> 
         <div className='rounded-xl h-full flex flex-col max-sm:h-[200px]  max-lg:h-[250px] justify-center p-[5.2px] w-full bg-[#F2F5FA]'>
@@ -47,17 +34,7 @@ const PayamItem: React.FC<PayamProps> = (props) => {
       <Grid justifyContent="space-around " className='text-right self-stretch justify-self-end [&>div]:flex' container item xl lg={props.pictures ? 12:9} >
         <div className='w-full justify-between items-center max-lg:flex-col-reverse text-[#737373]'>
           <p className='text-[12px] font-medium leading-normal ml-18'>{props.body}</p>
-          {<div className='flex justify-between max-lg:mb-4 items-center [&>div]:mr-2 [&>div]:flex [&>div]:rounded-full [&>div]:justify-center [&>div]:items-center [&>div]:h-[28px] [&>div]:w-[28px]'>
-            {props.bolton&&<div className='bg-[#DFE4EA]'>
-              <Bolton/>
-            </div>}
-            {props.reference &&<div className='bg-[#DFE4EA]'>
-              <Scan/>
-            </div>}
-            {props.watchFull &&<div className='bg-[#F3565F]'>
-              <Eye/>
-            </div>}
-          </div>}
+          {<Toolbar bolton reference watchFull/>}
         </div>
         <div className='flex items-end justify-between max-lg:flex-col-reverse  w-full  [&>div]:flex text-end'>
             {<div className='flex text-[10px] [&>span]:ml-4 max-lg:self-start font-medium justify-end items-end text-[#737373]'>
