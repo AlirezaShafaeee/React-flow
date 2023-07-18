@@ -18,7 +18,7 @@ const PayamItem: React.FC<PayamProps> = (props) => {
           <div className='rounded-full w-[43px] h-[43px] bg-slate-400'></div>
           <div className="text-right text-zinc-800 text-[12px] font-bold">{props.topic}</div>
         </div>
-       {props.likes && <SubscriptionInfo likes={props.likes} forwards={props?.forwards} comments={props?.comments}/>}
+       {(props.likes||props.forwards || props.comments )&& <SubscriptionInfo likes={props.likes} forwards={props?.forwards} comments={props?.comments}/>}
         <SocialInfo type={props.type} social={props.social}/>
       </Grid>
       {props.pictures &&<Grid container className='min-xl:self-stretch' item lg={3} xl={1.4} md={3}> 
